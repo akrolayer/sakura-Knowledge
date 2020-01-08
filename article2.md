@@ -1,19 +1,18 @@
 ごまなつと申します。キーバインド設定で快適なキーボード入力をするお手伝いをします。
 本記事では、Macのキーバインド設定について紹介します。用いるソフトはKarabiner-Elementsです。Karabiner-ElementsはmacOS Sierra以降に対応しています。Sierra未満の方はKarabinerを使ってください。
 
-## Karabiner-Elementsとは
+# Karabiner-Elementsとは
 Karabiner-Elementsとは、Sierra以降のmacOSのキーボードをカスタマイズするためのツールです。Sierraからキーボードドライバの構成が変更されたため、Karabiner-Elementsが開発されました（それより前はKarabinerが開発されていました）。この記事では、Karabiner-Elementsを扱います。
 
 キーマップの変更はもちろん可能です。既存で用意されている設定をインポートすることができ、その中に主要エディタのショートカットキー（Vim, Emacs, Visual Studio Code）がありとても簡単に設定できます。独自で設定することもでき、キーの組み合わせで他のキー入力や、マウス操作、キーバインド設定ができます。設定のインポート方法、独自設定の設定方法を紹介します。
 
-## 実際にキーバインド設定してみよう
+# 実際にキーバインド設定してみよう
 まず、[公式サイト](https://pqrs.org/osx/karabiner/)からインストールします。設定は変更せずインストール完了まで進めてください。Karabiner-Elementsの設定は~/.config/karabiner/karabiner.jsonに保存されます。Karabiner-Elementsを起動すると、このような画面が出ます。
 
-
-<img src="images2/first.png" width="50%">
+![first](images2/first.png)
 Simple Modificationsでは、一つのキー入力を他の一つのキー入力に変更できます。具体的にはFrom keyの入力をTo keyの入力に変換できます。キーマップ変更ですね。Add itemをクリックして、新たなルールを設定してください。消したい場合は、右側のRemoveをクリックしてください。
 
-## 既存設定のインポート
+# 既存設定のインポート
 Complex Modificationsでは、主要エディタのショートカットキー設定（Vim, Emacs, Visual Studio Codeなど）といった既存の設定がインポートするだけで使うことができます。独自設定も追加でき、追加する場合は複数キーの組み合わせを扱え、押しっぱなしといった複雑なルールも扱うことができます。
 
 ![complex](images2/complex.png)
@@ -26,7 +25,7 @@ Add ruleをクリックして、Import more rules from the internet(open a web b
 
 ![import](images2/import.png)
 
-## 独自設定
+# 独自設定
 キーバインド設定をするなら、自分に合った独自のキーバインド設定をしたいですよね。Karabiner-Elementsでも独自キーバインド設定ができます。キーバインド設定は、~/.config/karabiner/assets/complex_modificationsに保存されます。（インポートした設定は数列.jsonというファイル名で保存されています。例：1566313435.json）
 
 Karabiner-Elementsはこのディレクトリのjsonファイルを読み込んでいるため、自分でjsonファイルを作成すると読み込まれます。設定ファイル名は英数字内で自由なのですが、ごくたまに読み込まれないことがあります。その際はファイル名を数列.jsonとしてください。また、jsonファイル内容の形式が正しくなかった場合も読み込まれません。
@@ -64,9 +63,8 @@ Karabiner-ElementsのRule追加画面に表示される部分です。titleに�
 
 既に実行されている設定ファイルを編集後、変更を反映させるには「Complex Modifications」で対象のルールをEnableして、Add rulesで再度ルールを適用してください。
 
-### 設定の基本構造
-rulesは配列になっているので、１つのrulesの中に複数のdescription以下の設定を記述できます。titleの中に複数の設定が表示されていましたよね。
-また、１つのdescriptionの中に複数の設定をすることもできます。
+## 設定の基本構造
+rulesは配列になっているので、１つのrulesの中に複数のdescription以下の設定を記述できます。titleの中に複数の設定が表示されていましたよね。また、１つのdescriptionの中に複数の設定をすることもできます。
 
 ```
 "title"
@@ -81,7 +79,6 @@ rulesは配列になっているので、１つのrulesの中に複数のdescrip
     "to"
 ```
 
-###　コメント
 コメントは、キーを増やしても問題ないので"comment"のキーを作成する方法があります。
 
 ```
@@ -91,8 +88,8 @@ rulesは配列になっているので、１つのrulesの中に複数のdescrip
 キーバインド設定の記述に入ります。基本としては、fromで設定したキー入力を受け付けたら、toで設定したキー入力に変更するというものです。
 
 設定全体の注意点として、fromに設定した入力は、通常の動作をせずここで設定した入力をすることに注意してください。もう、fromに設定した入力はtoの処理しかしないということです。ちなみに、toになにも設定しないと何もしないのでfromに設定したキーを無効化します。また、単純にfrom、toに1つのキーを設定した場合は、キーマップの変更になります。
-
-###　type
+## from
+### type
 typeには、基本的には"basic"を指定します。マウスの動きをスクロールに変換したい場合のみ"mouse_motion_to_scroll"を指定します。この機能を使う場合は、Karabiner-ElementsのDevicesで、自分が使っているマウスにチェックを入れておく必要があります。
 
 ```
@@ -114,11 +111,11 @@ typeには、基本的には"basic"を指定します。マウスの動きをス
 }
 ```
 
-Controlキーを押しながらマウスを動かすと、動かした方向にスクロールするようになります。
+この例は、Controlキーを押しながらマウスを動かすと、動かした方向にスクロールするようになります。
 
 ここからの説明では、"title"/"rules"/"description"/"manipulators"/"type"の直接関係ない部分は省略してサンプルを載せていきます。ここからの設定は、全てtypeは"basic"です。
 
-
+### modifiers 
 ```
 "type":"basic"
 "from":{
@@ -131,7 +128,7 @@ Controlキーを押しながらマウスを動かすと、動かした方向に�
  ]
 ```
 
-control-jの組み合わせを指定しています。例の"controll"部分にanyを指定（"mandatory":["any"]）すると、全てのキー入力を指定します。キー入力ではなく、マウスのボタンを指定する時はkey_codeではなく、"pointing_button":"button3"のように指定してください。modifiersはキーの組み合わせを指定します。ここでは、mandatoryとoptionalがあります。
+control-jの組み合わせを指定しています。例の"controll"部分にanyを指定（"mandatory":["any"]）すると、全てのキー入力を指定します。キー入力ではなくマウスのボタンを指定する時は、key_codeではなく"pointing_button":"button3"のように指定してください。modifiersはキーの組み合わせを指定します。ここでは、mandatoryとoptionalがあります。
 
 mandatoryはキーの組み合わせを指定します。この組み合わせが入力されたときに"to"の処理を行います。mandatoryには、修飾キーのcommand, control, shift, option, fn, caps_lock, anyのどれかを設定することをお勧めします。これら以外だと、mandatoryに指定したキーを押しながらkey_codeに指定したキーを押した場合のみ動作するので、mandatoryに指定したキーの入力が少なくとも1回入ってしまいます。
 
@@ -157,7 +154,7 @@ controlと何かのキー入力を受け付けると、commandと押したキー
 
 注意点として、"mandatory"と"optional"に同じキーを指定すると引き継ぎできなくなります。
 
-### simultaneos
+### simultaneous
 "simultaneous"は、複数キーの同時押しに何らかの処理を割り当てたいときに使います。同時押しの許容時間は、Complex Modifications→Parameters→simultaneous_threshold_millisecondsで設定できます。デフォルトでは、50ミリ秒になっています。"modifiers"は両方押されている状態を検知したとき、"simultaneous"は指定した時間内に同時押しを検知したときに発火します。
 
 ```
@@ -201,7 +198,6 @@ jklの同時押しでテキストエディタを起動します。simultaneous�
  * "to_after_key_up"
  ** 同時押ししたキーを離した時点で処理を行いたい場合に設定します。例えば、次で指定するような変数を用いた処理に使います。
 
-###　set_variable
 ```
 "simultaneous_options": {
   "to_after_key_up": [
@@ -215,7 +211,7 @@ jklの同時押しでテキストエディタを起動します。simultaneous�
 ```
 "set_variable"で代入ができます。このようにすれば、押したときに"value"を1、離したときに0にできます。
 
-### to
+## to
 キーの指定方法に関しては"from"と同様です。配列なので、複数の処理を設定できます。
 
 ```
@@ -226,7 +222,7 @@ jklの同時押しでテキストエディタを起動します。simultaneous�
 ]
 ```
 
-@fromの設定が発火したらaを2回とjapanese_eisuuを押すことができます。"pointing_button"も指定できます。
+fromの設定が発火したらaを2回とjapanese_eisuuを押すことができます。"pointing_button"も指定できます。
 
 ```
 {
@@ -258,6 +254,7 @@ button1は左クリックですのでfromのキー操作にダブルクリック
 
 同時押しです。"modifiers"は、"from"の場合とは異なり"mandatory"、"optional"の設定は不要です。"lazy":true とすると、変換が実行されるタイミングが"from"が発火したタイミングではなく"from"が発火したキーを押しながら他のキーを押したタイミングになります。
 
+### IME変更
 ```
 "to": [
   {
@@ -265,6 +262,8 @@ button1は左クリックですのでfromのキー操作にダブルクリック
       "input_source_id": "^com\\.apple\\.inputmethod\\.Kotoeri\\.Japanese$"
     }
   }
+```
+```
 "to": [
   {
     "select_input_source": {
@@ -279,6 +278,8 @@ button1は左クリックですのでfromのキー操作にダブルクリック
 アップル日本語入力や、Google日本語入力など入力方式で値が変わります。input_source_identifiersの項目で"input_source_id"の値を確認してください。この例ではアップル日本語入力です。
 
 この方法では、アップル日本語入力やGoogle日本語入力といった入力方式まで扱いますが、英数入力とかな入力を切り替えるだけであればもっと簡単にできます。（後述する特定IMEを参照。）
+
+### mouse_key
 "mouse_key"を使うと、マウス移動、ホイールスクロールを割り当てられます。クリックは"from"の時と同様に"pointing_button"で割り当てます。
 
 ```
@@ -294,8 +295,9 @@ button1は左クリックですのでfromのキー操作にダブルクリック
 ]
 ```
 
-x,yは座標のことなので、xが横方向（正で右、負で左）、yが縦方向（正で下、負で上）移動です。ホイールは、"horizontal_wheel"は左右のスクロール（正で右、負で左）、"vertical_wheel"は上下のスクロール（正で下、負で上）です。
+x,yは座標のことなので、xが横方向（正で右、負で左）、yが縦方向（正で下、負で上）移動です。ホイールは、"horizontal_wheel"は左右のスクロール（正で右、負で左）、"vertical_wheel"は上下のスクロール（正で下、負で上）です。クリックは先述の"pointing_button"を使ってください。
 
+### 条件指定
 ```
 "from": {
   "key_code": "left_command",
@@ -314,7 +316,7 @@ x,yは座標のことなので、xが横方向（正で右、負で左）、yが
 ]
 ```
 
-"to_if_alone"は、単独で押したときのみ、設定に変換するというものです。@<list>{alone}は、左Commandキーを単独で押した場合は英数キーとして認識し、他のキーと組み合わせて押すと左Command-押したキーとして認識する設定です。この例では、2000ミリ秒押し続けると、英数への変換はキャンセルされます。
+"to_if_alone"は、単独で押したときのみ、設定に変換するというものです。この例は、左Commandキーを単独で押した場合は英数キーとして認識し、他のキーと組み合わせて押すと左Command-押したキーとして認識する設定です。この例では、2000ミリ秒押し続けると、英数への変換はキャンセルされます。
 
 ```
 "from": {
@@ -332,7 +334,7 @@ x,yは座標のことなので、xが横方向（正で右、負で左）、yが
 }
 ```
 
-"to_delayed_action"は、一定時間待った後の処理や、コマンドがキャンセルされた時の処理を設定できます。@<list>{delay}は、ctrl-xを押すと"ctrl-x"に1を代入します。そのまま何も押さないと2を代入します。ctrl-xに続けて何か別のキーを押すと0が代入されます。"to_if_invoked"が実行されるまでの時間はComplex Modifications→Parametersで指定できます。これをどのように使うかというと、Emacsなどにある"ctrl-x ctrl-s"のキーバインド設定をするために使います。後述する"condition"を使って実装します。
+"to_delayed_action"は、一定時間待った後の処理や、コマンドがキャンセルされた時の処理を設定できます。この例では、ctrl-xを押すと"ctrl-x"に1を代入します。そのまま何も押さないと2を代入します。ctrl-xに続けて何か別のキーを押すと0が代入されます。"to_if_invoked"が実行されるまでの時間はComplex Modifications→Parametersで指定できます。これをどのように使うかというと、Emacsなどにある"ctrl-x ctrl-s"のキーバインド設定をするために使います。後述する"condition"を使って実装します。
 
 ```
 "to_after_key_up": [
@@ -359,9 +361,10 @@ x,yは座標のことなので、xが横方向（正で右、負で左）、yが
 
 "to_if_held_down"は、"from"で設定したキーを指定した時間押し続けたときに実行する処理を書きます。この時間はデフォルトでは500ミリ秒です。設定画面のComplex Modifications→parametersで変更できますが、これだと全てのルールに適用されます。"description"ごとに設定する場合は、"parameters"/"basic.to_if_held_down_threshold_milliseconds"に設定します。
 "repeat"をtrueに指定すると、処理が実行され続けます。
-command-qは楽ですが、押し続けると閉じる必要のないアプリケーションを閉じてしまいます。@<list>{helddown}は、1秒間押し続けないとcommand-qの処理を実行しないようにしています。
+command-qは楽ですが、押し続けると閉じる必要のないアプリケーションを閉じてしまいます。例では、1秒間押し続けないとcommand-qの処理を実行しないようにしています。
 
-"conditions"は、一定の条件を満たすときのみに処理を行いたいときに指定する項目です。条件分岐、すなわちif文です。
+#### conditions
+"conditions"は、一定の条件を満たすときのみに処理を行いたいときに指定する項目です。
 
  * device_if、devece_unless
  ** 特定のキーボードの時、特定のキーボードでないときを条件にしたい場合は、　"identifiers"に、"vendor_id"と"product_id"を指定します。"vendor_id"と"product_id"は、Karabiner-ElementsのDevicesタブで確認できます。
