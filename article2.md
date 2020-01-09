@@ -1,4 +1,4 @@
-ごまなつと申します。キーバインド設定で快適なキーボード入力をするお手伝いをします。
+ごまなつと申します。キーバインド設定で快適なキーボード操作をするお手伝いをいたします。
 本記事では、Macのキーバインド設定について紹介します。用いるソフトはKarabiner-Elementsです。Karabiner-ElementsはmacOS Sierra以降に対応しています。Sierra未満の方はKarabinerを使ってください。
 
 # Karabiner-Elementsとは
@@ -9,21 +9,21 @@ Karabiner-Elementsとは、Sierra以降のmacOSのキーボードをカスタマ
 # 実際にキーバインド設定してみよう
 まず、[公式サイト](https://pqrs.org/osx/karabiner/)からインストールします。設定は変更せずインストール完了まで進めてください。Karabiner-Elementsの設定は~/.config/karabiner/karabiner.jsonに保存されます。Karabiner-Elementsを起動すると、このような画面が出ます。
 
-![first](images2/first.png)
+![Simple Modifications](images2/first.png)
 Simple Modificationsでは、一つのキー入力を他の一つのキー入力に変更できます。具体的にはFrom keyの入力をTo keyの入力に変換できます。キーマップ変更ですね。Add itemをクリックして、新たなルールを設定してください。消したい場合は、右側のRemoveをクリックしてください。
 
 # 既存設定のインポート
 Complex Modificationsでは、主要エディタのショートカットキー設定（Vim, Emacs, Visual Studio Codeなど）といった既存の設定がインポートするだけで使うことができます。独自設定も追加でき、追加する場合は複数キーの組み合わせを扱え、押しっぱなしといった複雑なルールも扱うことができます。
 
-![complex](images2/complex.png)
+![Complex Modifications](images2/complex.png)
 
-Add ruleをクリックして、Import more rules from the internet(open a web browser) をクリックすると、インポート可能なキーバインド設定の一覧が表示されているサイトが立ち上がります。
+Add ruleをクリックします。次の画面は現在設定しているルールの一覧画面です。Import more rules from the internet(open a web browser) をクリックすると、インポート可能なキーバインド設定の一覧が表示されているサイトが立ち上がります。
 
-![complexrule](images2/complexrule.png)
+![ルール一覧](images2/complexrule.png)
 
 追加したいキーバインド設定のImportをクリックして、インポートが完了すると、Karabiner-Elementsの画面に適用可能なキーバインドの一覧が表示され、Enableをクリックすると適用されます。Rulesには追加されて、Enableになっているキーバインドの設定が表示されます。
 
-![import](images2/import.png)
+![ルールのインポート](images2/import.png)
 
 # 独自設定
 キーバインド設定をするなら、自分に合った独自のキーバインド設定をしたいですよね。Karabiner-Elementsでも独自キーバインド設定ができます。キーバインド設定は、~/.config/karabiner/assets/complex_modificationsに保存されます。（インポートした設定は数列.jsonというファイル名で保存されています。例：1566313435.json）
