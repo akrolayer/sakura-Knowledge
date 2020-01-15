@@ -15,20 +15,21 @@ Simple Modificationsでは、一つのキー入力を他の一つのキー入力
 # 既存設定のインポート
 Complex Modificationsでは、主要エディタのショートカットキー設定（Vim, Emacs, Visual Studio Codeなど）といった既存の設定がインポートするだけで使うことができます。独自設定も追加でき、追加する場合は複数キーの組み合わせを扱え、押しっぱなしといった複雑なルールも扱うことができます。
 
-![Complex Modifications](images2/complex.png)
+![設定しているルール一覧](images2/complex.png)
 
-Add ruleをクリックします。次の画面は現在設定しているルールの一覧画面です。Import more rules from the internet(open a web browser) をクリックすると、インポート可能なキーバインド設定の一覧が表示されているサイトが立ち上がります。
+上の画面は、現在設定しているルールの一覧画面です。Add ruleをクリックすると、下の画面が開きます。現在設定できるルールが表示されます（インポートした設定と独自設定したもの）。
+![現在設定できるルール一覧](images2/complexrule.png)
 
-![ルール一覧](images2/complexrule.png)
+Import more rules from the internet(open a web browser) をクリックすると、インポート可能なキーバインド設定の一覧が表示されているサイトが立ち上がります。
 
-追加したいキーバインド設定のImportをクリックして、インポートが完了すると、Karabiner-Elementsの画面に適用可能なキーバインドの一覧が表示され、Enableをクリックすると適用されます。Rulesには追加されて、Enableになっているキーバインドの設定が表示されます。
+![ルールがインポートできるサイト](images2/import.png)
 
-![ルールのインポート](images2/import.png)
+追加したいキーバインド設定のImportをクリックして、インポートが完了すると、現在設定できるルールの画面に戻ります。インポートした設定が追加されており、Enableで実際に設定してそのルールを使うことができます。
 
 # 独自設定
 キーバインド設定をするなら、自分に合った独自のキーバインド設定をしたいですよね。Karabiner-Elementsでも独自キーバインド設定ができます。キーバインド設定は、~/.config/karabiner/assets/complex_modificationsに保存されます。（インポートした設定は数列.jsonというファイル名で保存されています。例：1566313435.json）
 
-Karabiner-Elementsはこのディレクトリのjsonファイルを読み込んでいるため、自分でjsonファイルを作成すると読み込まれます。設定ファイル名は英数字内で自由なのですが、ごくたまに読み込まれないことがあります。その際はファイル名を数列.jsonとしてください。また、jsonファイル内容の形式が正しくなかった場合も読み込まれません。
+Karabiner-Elementsの現在設定できるルール一覧はこのディレクトリのjsonファイルを読み込んでいるため、自分でjsonファイルを作成すると読み込まれます。設定ファイル名は英数字内で自由なのですが、ごくたまに読み込まれないことがあります。その際はファイル名を数列.jsonとしてください。また、jsonファイル内容の形式が正しくなかった場合も読み込まれません。
 
 JSONとはJavaScript Object Notationの略で、テキストベースのデータフォーマットです。主要なプログラミング言語にはjsonの生成や読み込みを行うライブラリが存在しているため、データ交換のためのデータフォーマットとして利用されます。
 
@@ -61,7 +62,7 @@ Karabiner-ElementsのRule追加画面に表示される部分です。titleに�
 
 ![title](images2/title.png)
 
-既に実行されている設定ファイルを編集後、変更を反映させるには「Complex Modifications」で対象のルールをEnableして、Add rulesで再度ルールを適用してください。
+既に実行されている設定ファイルを編集後、変更を反映させるにはComplex Modifications→Rulesで対象のルールをRemoveして、Add rulesで再度ルールを適用してください。
 
 ## 設定の基本構造
 rulesは配列になっているので、１つのrulesの中に複数のdescription以下の設定を記述できます。titleの中に複数の設定が表示されていましたよね。また、１つのdescriptionの中に複数の設定をすることもできます。
@@ -213,6 +214,13 @@ jklの同時押しでテキストエディタを起動します。simultaneous�
 
 ## to
 キーの指定方法に関しては"from"と同様です。配列なので、複数の処理を設定できます。
+
+```
+"to":[
+  {"key_code":"a"}
+]
+```
+fromの設定が発火したらaを押すことができます。
 
 ```
 "to":[
