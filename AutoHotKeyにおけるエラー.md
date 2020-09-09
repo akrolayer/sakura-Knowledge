@@ -88,7 +88,14 @@ Return
 - ChangeKeyでScrollLockに変更していたキーを指定したFキーに変更
 - AutoHotKeyのコードでScrollLockの部分を指定したFキーに変更
 
-という処理をしてください。
+という処理をしてください。例として、全てのカーソルキーを実装した場合のコードは次のようになります。
+
+```
+F13 & l::Send, {Blind}{right}
+F13 & j::Send, {Blind}{left}
+F13 & i::Send, {Blind}{up}
+F13 & k::Send, {Blind}{down}
+```
 
 # 筆者がScrollLockを非推奨にした理由
 以前の記事ではScrollLockをトリガーにすることを提案しましたが、筆者の環境では不具合が起こりました。先ほど説明した、押しっぱなし問題がScrollLockキーで発生してしまったためでした。ScrollLockキーをトリガーとして、押してすぐ離すとBackSpace、押しっぱなしだとキーバインドのトリガーキーとしてScrollLockを送信していました。次のコードです。
